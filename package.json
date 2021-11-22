@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/LtKernel/SquidBot#readme",
   "dependencies": {
+    "discord-buttons": "^4.0.0",
     "discord.js": "^13.3.1"
   }
 }
