@@ -1,0 +1,22 @@
+{
+  "name": "SquidBot",
+  "version": "1.0.0",
+  "description": "A Discord bot that provides utilities for ARK: Survival Evolved.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LtKernel/SquidBot.git"
+  },
+  "author": "LT-Kernel",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LtKernel/SquidBot/issues"
+  },
+  "homepage": "https://github.com/LtKernel/SquidBot#readme",
+  "dependencies": {
+    "discord.js": "^13.3.1"
+  }
+}
