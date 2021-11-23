@@ -1,6 +1,8 @@
 
+const fs = require('fs');
+
 // Require the necessary discord.js classes
-const { Client, Intents } = require('discord.js');
+const { Client, Collection, Intents } = require('discord.js');
 
 // load config variables
 // Warning: do not checkin config.json with actual token code included
@@ -9,24 +11,36 @@ const config = require('./config.json');
 // Create a new client instance
 const client = new Client({ intents: [Intents.FLAGS.GUILD_MESSAGES] });
 
+// Process command files
+client.commands = new Collection();
+const commandFiles = fs.readdirSync('./commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+	const command = require(`./commands/${file}`);
+	// Set a new item in the Collection
+	// With the key as the command name and the value as the exported module
+	client.commands.set(command.data.name, command);
+}
+
 // When the client is ready run this code only once
 client.once('ready', () => {
     console.log('SquidBot is online. All systems nominal. Weapons hot. Mission: the destruction of any and all Chinese communists.');
 });
 
+// Dynamically load and execute commands based on the contents of the commands folder
+// Remember to run node deploy-commands.js to register new commands
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
-	if (interaction.commandName === 'ping') {
-		const row = new MessageActionRow()
-			.addComponents(
-				new MessageButton()
-					.setCustomId('primary')
-					.setLabel('Primary')
-					.setStyle('PRIMARY'),
-			);
+	const command = client.commands.get(interaction.commandName);
 
-		await interaction.reply({ content: 'Pong!', components: [row] });
+	if (!command) return;
+
+	try {
+		await command.execute(interaction);
+	} catch (error) {
+		console.error(error);
+		return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
 
