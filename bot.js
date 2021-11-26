@@ -2,7 +2,8 @@
 const fs = require('fs');
 
 // Require the necessary discord.js classes
-const { Client, Collection, Intents } = require('discord.js');
+const { Client, Collection, Intents, } = require('discord.js');
+const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 
 // load config variables
 // Warning: do not checkin config.json with actual token code included
@@ -22,11 +23,6 @@ for (const file of commandFiles) {
 	client.commands.set(command.data.name, command);
 }
 
-// When the client is ready run this code only once
-client.once('ready', () => {
-    console.log('SquidBot is online. All systems nominal. Weapons hot. Mission: the destruction of any and all Chinese communists.');
-});
-
 // Dynamically load and execute commands based on the contents of the commands folder
 // Remember to run node deploy-commands.js to register new commands
 client.on('interactionCreate', async interaction => {
@@ -44,6 +40,11 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
-// Login to Discrod with API token credentials
+// When the client is ready run this code only once
+client.once('ready', () => {
+    console.log('SquidBot is online. All systems nominal. Weapons hot. Mission: the destruction of any and all Chinese communists.');
+});
+
+// Login to Discord with API token credentials
 // this must be the last line of the file
 client.login(config.token);
