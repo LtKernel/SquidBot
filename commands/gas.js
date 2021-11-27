@@ -3,11 +3,11 @@ const { MessageEmbed } = require('discord.js');
 const { AsciiTable3 } = require('ascii-table3');
 
 const gasTable = new AsciiTable3()
-	.setHeading('', 'Base',         'Generator', 'Coords', 'Tek', 'Main', 'Standby', 'Elem','Shards', 'Radius', 'Tek/hr', 'Gas', 'Obs Data',   'Rem Shards', 'Rem Gas')
-	.addRow(1,      'Tree of Life', 'Central',   '52/32',  'Yes',  'No',  'No',      '53',  '1000',   '10',    '3.7',     'NA' ,  '11/26/2021', '100',        'NA'     )
-	.addRow(1, 'Tree of Life', 52)
-	.addRow(2, 'Foundtain of Life', 34)
-	.addRow(2, 'Foundtain of Life', 34)
+	.setHeading('', 'Base', 'Generator', 'Coords', 'Tek', 'Main', 'Standby', 'Elem','Shards', 'Radius', 'Tek/hr', 'Gas', 'Obs Data', 'Rem Shards', 'Rem Gas', 'Projected Depletion')
+	.addRow(1, 'Tree of Life', 'Central', '52/32', 'Yes', 'No', 'No', '53', '1000', '10', '3.7', 'NA', '11/26/2021', '100', 'NA', '11/26/2021')
+	.addRow(1, 'Tree of Life', 'Central', '52/32', 'Yes', 'No', 'No', '53', '1000', '10', '3.7', 'NA', '11/26/2021', '100', '11/26/2021')
+	.addRow(2, 'Foundtain of Life', 'Central', '52/32', 'Yes', 'No', 'No', '53', '1000', '10', '3.7', 'NA', '11/26/2021', '11/26/2021')
+	.addRow(2, 'Foundtain of Life', 'Central', '52/32', 'Yes', 'No', 'No', '53', '1000', '10', '3.7', 'NA', '11/26/2021', '11/26/2021')
 	.removeBorder();
 
 // inside a command, event listener, etc.
@@ -20,12 +20,13 @@ const exampleEmbed = new MessageEmbed()
 	.setTimestamp()
 	.setFooter('Last refreshed:', 'https://i.imgur.com/AfFp7pu.png');
 
+
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('gas')
 		.setDescription('Loads the current fuel levels.'),
 	async execute(interaction) {
-		// const message = await interaction.reply({ embeds: [exampleEmbed], fetchReply: true });
-		await message.react('`' + gasTable.toString() + '`');
+		await interaction.reply('Last updated: Friday, November 26, 2021 4:20 PM' + '\r\n' + '`' + gasTable + '`');
+		await interaction.followUp({ embeds: [exampleEmbed] });
 	},
 };
