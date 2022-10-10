@@ -1,7 +1,11 @@
 # SquidBot
 A Discord bot for the game ARK: Survival Evolved
 
-# Install ESLint package (error checking)
+# NOTE: These install packages listed below should be imported automatically by package.json
+# I've them below to record what I did to set the project up from scratch
+# TODO The discord installs might be redundant?
+
+# Install ESLint package (syntax/error checking)
 npm install --save-dev eslint
 # https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint
 

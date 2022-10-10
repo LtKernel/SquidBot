@@ -2,7 +2,7 @@
 const fs = require('fs');
 
 // Require the necessary discord.js classes
-const { Client, Collection, Intents, } = require('discord.js');
+const { Client, Collection, GatewayIntentBits, } = require('discord.js');
 const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.js');
 
 // load config variables
@@ -10,7 +10,7 @@ const { MessageActionRow, MessageButton, MessageSelectMenu } = require('discord.
 const config = require('./config.json');
 
 // Create a new client instance
-const client = new Client({ intents: [Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
 // Process command files
 client.commands = new Collection();
@@ -24,7 +24,7 @@ for (const file of commandFiles) {
 }
 
 // Dynamically load and execute commands based on the contents of the commands folder
-// Remember to run node deploy-commands.js to register new commands
+// Remember to run node deploy-commands.js to register new commands with discord
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 
