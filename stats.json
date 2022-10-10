@@ -1,162 +1,164 @@
-"Stats": 
 {
-  "GuildID": 436772345445,
-  "Libraries":
-  [
-    {
-      "Name":"Water",
-      "Dinos": 
-      [
-        {
-          "Server": "The Island",
-          "Craftingeature": "Basilosaurus",
-          "Owner": "Vixen",
-          "S": "F",
-          "Health": 32,
-          "Stamina": 35,
-          "OxyGeneration": 23,
-          "Food": 5,
-          "Weight": 35,
-          "Damage": 21,
-          "Speed": 23,
-        },
-        {
-          "Server": "The Island",
-          "Craftingeature": "Basilosaurus",
-          "Owner": "Rook",
-          "S": "F", 
-          "Health": 1,
-          "Stamina": 3,
-          "OxyGeneration": 4,
-          "Food": 55,
-          "Weight": 23,
-          "Damage": 23,
-          "Speed": 2,  
-        },
-        {
-          "Server": "The Island",
-          "Craftingeature": "Plesiosaur",
-          "Owner": "Rook",
-          "S": "F",
-          "Health": 1,
-          "Stamina": 3,
-          "OxyGeneration": 4,
-          "Food": 55,
-          "Weight": 23,
-          "Damage": 23,
-          "Speed": 2,
-        }
-      ]
-    },
-    {
-      "Name":"Land",
-      "Dinos": 
-      [
-        {
-          "Server": "Ragnarok",
-          "Craftingeature": "Giganotosaurus",
-          "Owner": "Legday",
-          "S": "M",
-          "Health": 32,
-          "Stamina": 35,
-          "OxyGeneration": 23,
-          "Food": 5,
-          "Weight": 35,
-          "Damage": 21,
-          "Speed": 23,
-        },
-        {
-          "Library": "Land",
-          "Server": "Abberation",
-          "Craftingeature": "Giganotosaurus",
-          "Owner": "Taba",
-          "S": "F",
-          "Health": 1,
-          "Stamina": 3,
-          "OxyGeneration": 4,
-          "Food": 55,
-          "Weight": 23,
-          "Damage": 23,
-          "Speed": 2,
-        }
-      ]
-    },
-    {
-      "Name":"Fyers",
-      "Dinos":
-      [
-        {
-          "Server": "Abberation",
-          "Craftingeature": "Pteradon",
-          "Owner": "Vixen",
-          "S": "F",
-          "Health": 32,
-          "Stamina": 35,
-          "OxyGeneration": 23,
-          "Food": 5,
-          "Weight": 35,
-          "Damage": 21,
-          "Speed": 23,
-        },
-        {
-          "Server": "Extinction",
-          "Craftingeature": "Pteradon",
-          "Owner": "Vixen",
-          "S": "M",
-          "Health": 1,
-          "Stamina": 3,
-          "OxyGeneration": 4,
-          "Food": 55,
-          "Weight": 23,
-          "Damage": 23,
-          "Speed": 2,
-        }
-      ]
-    },
-    {
-      "Name":"Land",
-      "Dinos": 
-      [
-        {
-          "Server": "Extinction",
-          "Craftingeature": "Speedinosaurus",
-          "Owner": "Vixen",
-          "S": "M",
-          "Health": 1,
-          "Stamina": 3,
-          "OxyGeneration": 4,
-          "Food": 55,
-          "Weight": 23,
-          "Damage": 23,
-          "Speed": 2,
-        },
-        {
-          "Server": "Extinction",
-          "Craftingeature": "Speedinosaurus",
-          "Owner": "Vixen",
-          "S": "M",
-          "Health": 1,
-          "Stamina": 3,
-          "OxyGeneration": 4,
-          "Food": 55,
-          "Weight": 23,
-          "Damage": 23,
-          "Speed": 2,
-        },
-        {
-          "Server": "Extinction",
-          "Craftingeature": "Speedinosaurus",
-          "Owner": "Vixen",
-          "S": "M",
-          "Health": 1,
-          "Stamina": 3,
-          "OxyGeneration": 4,
-          "Food": 55,
-          "Weight": 23,
-          "Damage": 23,
-          "Speed": 2,
-        }
-      ]
-    }
-  ]
+  "Stats":
+  {
+    "GuildID": 436772345445,
+    "Libraries":
+    [
+      {
+        "Name":"Water",
+        "Dinos": 
+        [
+          {
+            "Server": "The Island",
+            "Craftingeature": "Basilosaurus",
+            "Owner": "Vixen",
+            "S": "F",
+            "Health": 32,
+            "Stamina": 35,
+            "OxyGeneration": 23,
+            "Food": 5,
+            "Weight": 35,
+            "Damage": 21,
+            "Speed": 23
+          },
+          {
+            "Server": "The Island",
+            "Craftingeature": "Basilosaurus",
+            "Owner": "Rook",
+            "S": "F", 
+            "Health": 1,
+            "Stamina": 3,
+            "OxyGeneration": 4,
+            "Food": 55,
+            "Weight": 23,
+            "Damage": 23,
+            "Speed": 2 
+          },
+          {
+            "Server": "The Island",
+            "Craftingeature": "Plesiosaur",
+            "Owner": "Rook",
+            "S": "F",
+            "Health": 1,
+            "Stamina": 3,
+            "OxyGeneration": 4,
+            "Food": 55,
+            "Weight": 23,
+            "Damage": 23,
+            "Speed": 2
+          }
+        ]
+      },
+      {
+        "Name":"Land",
+        "Dinos": 
+        [
+          {
+            "Server": "Ragnarok",
+            "Craftingeature": "Giganotosaurus",
+            "Owner": "Legday",
+            "S": "M",
+            "Health": 32,
+            "Stamina": 35,
+            "OxyGeneration": 23,
+            "Food": 5,
+            "Weight": 35,
+            "Damage": 21,
+            "Speed": 23
+          },
+          {
+            "Library": "Land",
+            "Server": "Abberation",
+            "Craftingeature": "Giganotosaurus",
+            "Owner": "Taba",
+            "S": "F",
+            "Health": 1,
+            "Stamina": 3,
+            "OxyGeneration": 4,
+            "Food": 55,
+            "Weight": 23,
+            "Damage": 23,
+            "Speed": 2
+          }
+        ]
+      },
+      {
+        "Name":"Fyers",
+        "Dinos":
+        [
+          {
+            "Server": "Abberation",
+            "Craftingeature": "Pteradon",
+            "Owner": "Vixen",
+            "S": "F",
+            "Health": 32,
+            "Stamina": 35,
+            "OxyGeneration": 23,
+            "Food": 5,
+            "Weight": 35,
+            "Damage": 21,
+            "Speed": 23
+          },
+          {
+            "Server": "Extinction",
+            "Craftingeature": "Pteradon",
+            "Owner": "Vixen",
+            "S": "M",
+            "Health": 1,
+            "Stamina": 3,
+            "OxyGeneration": 4,
+            "Food": 55,
+            "Weight": 23,
+            "Damage": 23,
+            "Speed": 2
+          }
+        ]
+      },
+      {
+        "Name":"Land",
+        "Dinos": 
+        [
+          {
+            "Server": "Extinction",
+            "Craftingeature": "Speedinosaurus",
+            "Owner": "Vixen",
+            "S": "M",
+            "Health": 1,
+            "Stamina": 3,
+            "OxyGeneration": 4,
+            "Food": 55,
+            "Weight": 23,
+            "Damage": 23,
+            "Speed": 2
+          },
+          {
+            "Server": "Extinction",
+            "Craftingeature": "Speedinosaurus",
+            "Owner": "Vixen",
+            "S": "M",
+            "Health": 1,
+            "Stamina": 3,
+            "OxyGeneration": 4,
+            "Food": 55,
+            "Weight": 23,
+            "Damage": 23,
+            "Speed": 2
+          },
+          {
+            "Server": "Extinction",
+            "Craftingeature": "Speedinosaurus",
+            "Owner": "Vixen",
+            "S": "M",
+            "Health": 1,
+            "Stamina": 3,
+            "OxyGeneration": 4,
+            "Food": 55,
+            "Weight": 23,
+            "Damage": 23,
+            "Speed": 2
+          }
+        ]
+      }
+    ]
+  }
 }
