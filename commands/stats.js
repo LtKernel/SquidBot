@@ -7,7 +7,7 @@ const { ClientInvalidOption } = require('discord.js/src/errors/ErrorCodes');
 const statsJson = require('../stats.json');
 
 // Mobile-friendly output
-const compact = flase;
+const compact = false;
 
 function compactServer(server) {
 	return {
