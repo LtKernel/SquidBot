@@ -1,21 +1,41 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { AsciiTable3 } = require('ascii-table3');
-const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+// const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 
-const dinoStatsTable = new AsciiTable3()
-	.setHeading('ID', 'Dino', 'Health', 'Stamina', 'Oxygen', 'Food', 'Weight', 'Melee', 'Speed')
-	.addRow(1, 'Rex', '15', '32', '67', '76', '76', '53', '76')
-	.addRow(2, 'Raptor', '18', '62', '67', '76', '76', '53', '76')
-	.addRow(3, 'Turtle', '18', '32', '67', '76', '76', '53', '76')
-	.addRow(4, 'Giga', '18', '32', '67', '76', '76', '53', '76')
-	.removeBorder();
+// Load the stats database
+const stats = require('../stats.json');
 
+const statsTable = new AsciiTable3();
+
+stats.Database.Libraries.forEach(function(library) {
+	// if(library.Name == ARG)
+	statsTable.setHeading('Dino', 'Server', 'Owner', 'Sex', 'Health', 'Stamina', 'Oxygen', 'Food', 'Weight', 'Melee', 'Speed');
+	library.Dinos.forEach(function(dino) {
+		statsTable.addRow(dino.Creature,
+			dino.Server,
+			dino.Owner,
+			dino.Sex,
+			dino.Health,
+			dino.Stamina,
+			dino.Oxygen,
+			dino.Food,
+			dino.Weight,
+			dino.Melee,
+			dino.Speed);
+	});
+	statsTable.removeBorder();
+	console.log(statsTable.toString());
+});
 
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('dinostats')
-		.setDescription('Loads the current breeding stats.'),
+		.setDescription('Loads the current breeding stats.')
+		.addStringOption(option =>
+			option.setName('input')
+				.setDescription('The input to echo back')
+				.setRequired(true)),
 	async execute(interaction) {
-		await interaction.reply({ content: 'Last updated: Friday, November 26, 2021 4:20 PM' + '\r\n' + '`' + dinoStatsTable + '`', components: [row] });
+		await interaction.reply({ content: 'Last updated: Friday, November 26, 2021 4:20 PM' + '\r\n' + '`' + statsTable + '`' });
 	},
 };

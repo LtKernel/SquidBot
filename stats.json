@@ -1,6 +1,5 @@
 {
-  "Stats":
-  {
+  "Database": {
     "GuildID": 436772345445,
     "Libraries":
     [
@@ -10,41 +9,41 @@
         [
           {
             "Server": "The Island",
-            "Craftingeature": "Basilosaurus",
+            "Creature": "Basilosaurus",
             "Owner": "Vixen",
-            "S": "F",
+            "Sex": "F",
             "Health": 32,
             "Stamina": 35,
-            "OxyGeneration": 23,
+            "Oxygen": 23,
             "Food": 5,
             "Weight": 35,
-            "Damage": 21,
+            "Melee": 21,
             "Speed": 23
           },
           {
             "Server": "The Island",
-            "Craftingeature": "Basilosaurus",
+            "Creature": "Basilosaurus",
             "Owner": "Rook",
-            "S": "F", 
+            "Sex": "F", 
             "Health": 1,
             "Stamina": 3,
-            "OxyGeneration": 4,
+            "Oxygen": 4,
             "Food": 55,
             "Weight": 23,
-            "Damage": 23,
+            "Melee": 23,
             "Speed": 2 
           },
           {
             "Server": "The Island",
-            "Craftingeature": "Plesiosaur",
+            "Creature": "Plesiosaur",
             "Owner": "Rook",
-            "S": "F",
+            "Sex": "F",
             "Health": 1,
             "Stamina": 3,
-            "OxyGeneration": 4,
+            "Oxygen": 4,
             "Food": 55,
             "Weight": 23,
-            "Damage": 23,
+            "Melee": 23,
             "Speed": 2
           }
         ]
@@ -55,29 +54,29 @@
         [
           {
             "Server": "Ragnarok",
-            "Craftingeature": "Giganotosaurus",
+            "Creature": "Giganotosaurus",
             "Owner": "Legday",
-            "S": "M",
+            "Sex": "M",
             "Health": 32,
             "Stamina": 35,
-            "OxyGeneration": 23,
+            "Oxygen": 23,
             "Food": 5,
             "Weight": 35,
-            "Damage": 21,
+            "Melee": 21,
             "Speed": 23
           },
           {
             "Library": "Land",
             "Server": "Abberation",
-            "Craftingeature": "Giganotosaurus",
+            "Creature": "Giganotosaurus",
             "Owner": "Taba",
-            "S": "F",
+            "Sex": "F",
             "Health": 1,
             "Stamina": 3,
-            "OxyGeneration": 4,
+            "Oxygen": 4,
             "Food": 55,
             "Weight": 23,
-            "Damage": 23,
+            "Melee": 23,
             "Speed": 2
           }
         ]
@@ -88,28 +87,28 @@
         [
           {
             "Server": "Abberation",
-            "Craftingeature": "Pteradon",
+            "Creature": "Pteradon",
             "Owner": "Vixen",
-            "S": "F",
+            "Sex": "F",
             "Health": 32,
             "Stamina": 35,
-            "OxyGeneration": 23,
+            "Oxygen": 23,
             "Food": 5,
             "Weight": 35,
-            "Damage": 21,
+            "Melee": 21,
             "Speed": 23
           },
           {
             "Server": "Extinction",
-            "Craftingeature": "Pteradon",
+            "Creature": "Pteradon",
             "Owner": "Vixen",
-            "S": "M",
+            "Sex": "M",
             "Health": 1,
             "Stamina": 3,
-            "OxyGeneration": 4,
+            "Oxygen": 4,
             "Food": 55,
             "Weight": 23,
-            "Damage": 23,
+            "Melee": 23,
             "Speed": 2
           }
         ]
@@ -120,41 +119,41 @@
         [
           {
             "Server": "Extinction",
-            "Craftingeature": "Speedinosaurus",
+            "Creature": "Speedinosaurus",
             "Owner": "Vixen",
-            "S": "M",
+            "Sex": "M",
             "Health": 1,
             "Stamina": 3,
-            "OxyGeneration": 4,
+            "Oxygen": 4,
             "Food": 55,
             "Weight": 23,
-            "Damage": 23,
+            "Melee": 23,
             "Speed": 2
           },
           {
             "Server": "Extinction",
-            "Craftingeature": "Speedinosaurus",
+            "Creature": "Speedinosaurus",
             "Owner": "Vixen",
-            "S": "M",
+            "Sex": "M",
             "Health": 1,
             "Stamina": 3,
-            "OxyGeneration": 4,
+            "Oxygen": 4,
             "Food": 55,
             "Weight": 23,
-            "Damage": 23,
+            "Melee": 23,
             "Speed": 2
           },
           {
             "Server": "Extinction",
-            "Craftingeature": "Speedinosaurus",
+            "Creature": "Speedinosaurus",
             "Owner": "Vixen",
-            "S": "M",
+            "Sex": "M",
             "Health": 1,
             "Stamina": 3,
-            "OxyGeneration": 4,
+            "Oxygen": 4,
             "Food": 55,
             "Weight": 23,
-            "Damage": 23,
+            "Melee": 23,
             "Speed": 2
           }
         ]
