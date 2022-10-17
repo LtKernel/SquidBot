@@ -24,7 +24,7 @@ for (const file of commandFiles) {
 }
 
 // Dynamically load and execute commands based on the contents of the commands folder
-// Remember to run node deploy-commands.js to register new commands with discord
+// Remember to run "node deploy-commands.js" to register new commands with discord
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
 

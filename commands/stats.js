@@ -44,19 +44,25 @@ function getLibraryList() {
 }
 
 function getHelp() {
-	return 'todo: say something useful here.';
+	return 'todo: say something useful here about /stats.';
 }
 
+/**
+* Retrieves creature stats from the JSON database and returns
+* them in the form of an AsciiTable3
+* @param {String} name - The library name used to filter which creatures are returned
+  @returns {AsciiTable3} A table of creature statistics.
+*/
 function getLibrary(name) {
 
 	const statsTable = new AsciiTable3();
 	statsTable.removeBorder();
 
 	if (compact) {
-		statsTable.setHeading('ID', 'Creature', 'Map', 'Owner', 'Ge', 'HP', 'St', 'Ox', 'Fo', 'We', 'Dm', 'Sp');
+		statsTable.setHeading('ID', 'Creature', 'Name', 'Map', 'Owner', 'Ge', 'HP', 'St', 'Ox', 'Fo', 'We', 'Dm', 'Sp');
 	}
 	else {
-		statsTable.setHeading('ID', 'Creature', 'Map', 'Owner', 'Sex', 'Health', 'Stamina', 'Oxygen', 'Food', 'Weight', 'Melee', 'Speed');
+		statsTable.setHeading('ID', 'Creature', 'Name', 'Map', 'Owner', 'Sex', 'Health', 'Stamina', 'Oxygen', 'Food', 'Weight', 'Melee', 'Speed');
 	}
 
 	statsJson.Database.Libraries.forEach((library) => {
@@ -66,6 +72,7 @@ function getLibrary(name) {
 				statsTable.addRow(
 					++id,
 					dino.Creature,
+					dino.Name,
 					compactServer(dino.Server),
 					dino.Owner,
 					compactSex(dino.Sex),
@@ -91,8 +98,9 @@ function getMenuOptions(statsTable) {
 	const menuOptions = [];
 	// loop through the table, examine the first column with the creature name
 	for (let index = 0; index < statsTable.rows.length; index++) {
+		// Add the ID, Creature type and name to each option
 		menuOptions.push({
-			label: `${index + 1}     ${statsTable.rows[index][1]}`,
+			label: `${index + 1} ${statsTable.rows[index][1]} ${statsTable.rows[index][2]}`,
 			value: `${index + 1}`,
 			// set the first option as default
 			default: index == 0 ? true : false,
@@ -104,95 +112,102 @@ function getMenuOptions(statsTable) {
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('stats')
-		.setDescription('Loads the current breeding stats.')
+		.setDescription('Loads the current creature stats.')
 		.addStringOption(option =>
 			option.setName('library')
 				.setDescription('The stats library to accesss. Use "list" to see available libraries.')
 				.setRequired(true)),
 	async execute(interaction) {
-		// Grab the libary name entered after the slash command
-		const libraryName = interaction.options.getString('library');
 
-		// Special case: if "list" is entered just print a list of libraries
-		if (libraryName == 'list') {
-			await interaction.reply({ content: `${getLibraryList()}` });
+		if (interaction.customId === 'selectedId') {
+			await interaction.update({ content: 'Something was selected!', components: [] });
 		}
-		// Special case: if "help" is entered just print help info
-		else if (libraryName == 'help') {
-			await interaction.reply({ content: `${getHelp()}` });
-		}
-		// Otherwise attempt to retrieve the specified library by name
 		else {
-			const library = getLibrary(libraryName);
 
-			// If the library was found setup the buttons
-			if (library) {
+			// Grab the libary name entered after the slash command
+			const libraryName = interaction.options.getString('library');
 
-				// Build the 1st button row after the table.
-				const row1 = new ActionRowBuilder().addComponents(
-					new SelectMenuBuilder()
-						.setCustomId('ID')
-						.addOptions(getMenuOptions(library)),
-				);
-
-				// Build the 2nd button row after the table.
-				const row2 = new ActionRowBuilder().addComponents(
-					new ButtonBuilder()
-						.setCustomId('Health')
-						.setStyle('Primary')
-						.setEmoji('❤')
-						.setLabel('Health'),
-					new ButtonBuilder()
-						.setCustomId('Stamina')
-						.setStyle('Primary')
-						.setEmoji('⚡')
-						.setLabel('Stamina'),
-					new ButtonBuilder()
-						.setCustomId('Weight')
-						.setStyle('Primary')
-						.setEmoji('🏋')
-						.setLabel('Weight'),
-					new ButtonBuilder()
-						.setCustomId('Melee')
-						.setStyle('Primary')
-						.setEmoji('💪')
-						.setLabel('Melee'),
-				);
-				// Build the 3rd button row after the table.
-				const row3 = new ActionRowBuilder().addComponents(
-					new ButtonBuilder()
-						.setCustomId('add')
-						.setStyle('Primary')
-						.setEmoji('🦖')
-						.setLabel('Add'),
-					new ButtonBuilder()
-						.setCustomId('edit')
-						.setStyle('Primary')
-						.setEmoji('📝')
-						.setLabel('Edit'),
-					new ButtonBuilder()
-						.setCustomId('moveUp')
-						.setStyle('Secondary')
-						.setEmoji('⬆')
-						.setLabel('Move'),
-					new ButtonBuilder()
-						.setCustomId('moveDown')
-						.setStyle('Secondary')
-						.setEmoji('⬇')
-						.setLabel('Move'),
-					new ButtonBuilder()
-						.setCustomId('remove')
-						.setStyle('Danger')
-						.setEmoji('🗑')
-						.setLabel('Remove'),
-				);
-				// Disaply the table and buttons
-				await interaction.reply({ content: 'Last updated: todo' + '\r\n\r\n' + '`' + library.toString() + '`' + '\r\nSelect a creature and use the stat buttons to "bump" a stat.\r\n',
-					components: [row1, row2, row3] });
+			// Special case: if "list" is entered just print a list of libraries
+			if (libraryName == 'list') {
+				await interaction.reply({ content: `${getLibraryList()}` });
 			}
+			// Special case: if "help" is entered just print help info
+			else if (libraryName == 'help') {
+				await interaction.reply({ content: `${getHelp()}` });
+			}
+			// Otherwise attempt to retrieve the specified library by name
 			else {
-				// Display a "library not found" message
-				await interaction.reply({ content: `Could not find a libary named "${libraryName}". Use "/stats list" to see available libraries.` });
+				const library = getLibrary(libraryName);
+
+				// If the library was found setup the buttons
+				if (library) {
+
+					// Build the 1st button row after the table.
+					const row1 = new ActionRowBuilder().addComponents(
+						new SelectMenuBuilder()
+							.setCustomId('selectedId')
+							.addOptions(getMenuOptions(library)),
+					);
+
+					// Build the 2nd button row after the table.
+					const row2 = new ActionRowBuilder().addComponents(
+						new ButtonBuilder()
+							.setCustomId('Health')
+							.setStyle('Primary')
+							.setEmoji('❤')
+							.setLabel('Health'),
+						new ButtonBuilder()
+							.setCustomId('Stamina')
+							.setStyle('Primary')
+							.setEmoji('⚡')
+							.setLabel('Stamina'),
+						new ButtonBuilder()
+							.setCustomId('Weight')
+							.setStyle('Primary')
+							.setEmoji('🏋')
+							.setLabel('Weight'),
+						new ButtonBuilder()
+							.setCustomId('Melee')
+							.setStyle('Primary')
+							.setEmoji('💪')
+							.setLabel('Melee'),
+					);
+					// Build the 3rd button row after the table.
+					const row3 = new ActionRowBuilder().addComponents(
+						new ButtonBuilder()
+							.setCustomId('add')
+							.setStyle('Primary')
+							.setEmoji('🦖')
+							.setLabel('Add'),
+						new ButtonBuilder()
+							.setCustomId('edit')
+							.setStyle('Primary')
+							.setEmoji('📝')
+							.setLabel('Edit'),
+						new ButtonBuilder()
+							.setCustomId('moveUp')
+							.setStyle('Secondary')
+							.setEmoji('⬆')
+							.setLabel('Move'),
+						new ButtonBuilder()
+							.setCustomId('moveDown')
+							.setStyle('Secondary')
+							.setEmoji('⬇')
+							.setLabel('Move'),
+						new ButtonBuilder()
+							.setCustomId('remove')
+							.setStyle('Danger')
+							.setEmoji('🗑')
+							.setLabel('Remove'),
+					);
+					// Disaply the table and buttons
+					await interaction.reply({ content: 'Last updated: todo' + '\r\n\r\n' + '`' + library.toString() + '`' + '\r\nSelect a creature and use the stat buttons to "bump" a stat.\r\n',
+						components: [row1, row2, row3] });
+				}
+				else {
+					// Display a "library not found" message
+					await interaction.reply({ content: `Could not find a libary named "${libraryName}". Use "/stats list" to see available libraries.` });
+				}
 			}
 		}
 	},
