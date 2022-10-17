@@ -1,16 +1,23 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { AsciiTable3 } = require('ascii-table3');
-const { ClientInvalidOption } = require('discord.js/src/errors/ErrorCodes');
-// const { ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
+// const { ClientInvalidOption } = require('discord.js/src/errors/ErrorCodes');
+const { ActionRowBuilder, ButtonBuilder, SelectMenuBuilder } = require('discord.js');
 
 // Load the stats database
 const statsJson = require('../stats.json');
 
 // Mobile-friendly output
-const compact = false;
+const compact = true;
+
+// const { time } = require('discord.js');
+// const { MessageActionRow } = require('discord-buttons');
+// const date = new Date();
+
+// const lib = require('lib')({token: process.env.STDLIB_SECRET_TOKEN});
+
 
 function compactServer(server) {
-	return {
+	return compact ? {
 		'The Island': 'TI',
 		'Scorched Earth': 'SE',
 		'Abberation': 'AB',
@@ -22,16 +29,22 @@ function compactServer(server) {
 		'Valguaro': 'VA',
 		'Crystal Isles': 'CI',
 		'Los Island': 'LI',
-		default: '??',
-	}[server];
+	}[server] : server;
 }
 
 function compactSex(sex) {
-	return {
+	return compact ? {
 		'Male': 'M',
 		'Female': 'F',
-		default: '?',
-	}[sex];
+	}[sex] : sex;
+}
+
+function getLibraryList() {
+	return 'No libraries found. Use "/stats add" to create a new one or "/stats help" for more information';
+}
+
+function getHelp() {
+	return 'todo: say something useful here.';
 }
 
 function getLibrary(name) {
@@ -40,16 +53,18 @@ function getLibrary(name) {
 	statsTable.removeBorder();
 
 	if (compact) {
-		statsTable.setHeading('Creature', 'Srv', 'Owner', 'Ge', 'HP', 'St', 'Ox', 'Fo', 'We', 'Dm', 'Sp');
+		statsTable.setHeading('ID', 'Creature', 'Map', 'Owner', 'Ge', 'HP', 'St', 'Ox', 'Fo', 'We', 'Dm', 'Sp');
 	}
 	else {
-		statsTable.setHeading('Creature', 'Server', 'Owner', 'Sex', 'Health', 'Stamina', 'Oxygen', 'Food', 'Weight', 'Melee', 'Speed');
+		statsTable.setHeading('ID', 'Creature', 'Map', 'Owner', 'Sex', 'Health', 'Stamina', 'Oxygen', 'Food', 'Weight', 'Melee', 'Speed');
 	}
 
 	statsJson.Database.Libraries.forEach((library) => {
 		if (library.Name == name) {
+			let id = 0;
 			library.Dinos.forEach(function(dino) {
 				statsTable.addRow(
+					++id,
 					dino.Creature,
 					compactServer(dino.Server),
 					dino.Owner,
@@ -65,18 +80,120 @@ function getLibrary(name) {
 		}
 	});
 
-	return statsTable.rows.length > 0 ? statsTable.toString() : `Could not find a libary named ${name}`;
+	return statsTable.rows.length > 0 ? statsTable : null;
 }
+
+/**
+* Build a list of parameters for the creature select menu
+* @param {AsciiTable3} statsTable - The table to derive the menu optiosn from
+*/
+function getMenuOptions(statsTable) {
+	const menuOptions = [];
+	// loop through the table, examine the first column with the creature name
+	for (let index = 0; index < statsTable.rows.length; index++) {
+		menuOptions.push({
+			label: `${index + 1}     ${statsTable.rows[index][1]}`,
+			value: `${index + 1}`,
+			// set the first option as default
+			default: index == 0 ? true : false,
+		});
+	}
+	return menuOptions;
+}
+
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('stats')
 		.setDescription('Loads the current breeding stats.')
 		.addStringOption(option =>
 			option.setName('library')
-				.setDescription('The stats library to accesss. Enter /"List/" to see available libraries')
+				.setDescription('The stats library to accesss. Use "list" to see available libraries.')
 				.setRequired(true)),
 	async execute(interaction) {
+		// Grab the libary name entered after the slash command
 		const libraryName = interaction.options.getString('library');
-		await interaction.reply({ content: 'Last updated: Friday, November 26, 2021 4:20 PM' + '\r\n' + '`' + getLibrary(libraryName) + '`' });
+
+		// Special case: if "list" is entered just print a list of libraries
+		if (libraryName == 'list') {
+			await interaction.reply({ content: `${getLibraryList()}` });
+		}
+		// Special case: if "help" is entered just print help info
+		else if (libraryName == 'help') {
+			await interaction.reply({ content: `${getHelp()}` });
+		}
+		// Otherwise attempt to retrieve the specified library by name
+		else {
+			const library = getLibrary(libraryName);
+
+			// If the library was found setup the buttons
+			if (library) {
+
+				// Build the 1st button row after the table.
+				const row1 = new ActionRowBuilder().addComponents(
+					new SelectMenuBuilder()
+						.setCustomId('ID')
+						.addOptions(getMenuOptions(library)),
+				);
+
+				// Build the 2nd button row after the table.
+				const row2 = new ActionRowBuilder().addComponents(
+					new ButtonBuilder()
+						.setCustomId('Health')
+						.setStyle('Primary')
+						.setEmoji('❤')
+						.setLabel('Health'),
+					new ButtonBuilder()
+						.setCustomId('Stamina')
+						.setStyle('Primary')
+						.setEmoji('⚡')
+						.setLabel('Stamina'),
+					new ButtonBuilder()
+						.setCustomId('Weight')
+						.setStyle('Primary')
+						.setEmoji('🏋')
+						.setLabel('Weight'),
+					new ButtonBuilder()
+						.setCustomId('Melee')
+						.setStyle('Primary')
+						.setEmoji('💪')
+						.setLabel('Melee'),
+				);
+				// Build the 3rd button row after the table.
+				const row3 = new ActionRowBuilder().addComponents(
+					new ButtonBuilder()
+						.setCustomId('add')
+						.setStyle('Primary')
+						.setEmoji('🦖')
+						.setLabel('Add'),
+					new ButtonBuilder()
+						.setCustomId('edit')
+						.setStyle('Primary')
+						.setEmoji('📝')
+						.setLabel('Edit'),
+					new ButtonBuilder()
+						.setCustomId('moveUp')
+						.setStyle('Secondary')
+						.setEmoji('⬆')
+						.setLabel('Move'),
+					new ButtonBuilder()
+						.setCustomId('moveDown')
+						.setStyle('Secondary')
+						.setEmoji('⬇')
+						.setLabel('Move'),
+					new ButtonBuilder()
+						.setCustomId('remove')
+						.setStyle('Danger')
+						.setEmoji('🗑')
+						.setLabel('Remove'),
+				);
+				// Disaply the table and buttons
+				await interaction.reply({ content: 'Last updated: todo' + '\r\n\r\n' + '`' + library.toString() + '`' + '\r\nSelect a creature and use the stat buttons to "bump" a stat.\r\n',
+					components: [row1, row2, row3] });
+			}
+			else {
+				// Display a "library not found" message
+				await interaction.reply({ content: `Could not find a libary named "${libraryName}". Use "/stats list" to see available libraries.` });
+			}
+		}
 	},
 };
