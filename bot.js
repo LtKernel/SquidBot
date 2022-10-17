@@ -22,7 +22,6 @@ for (const file of commandFiles) {
 	// With the key as the command name and the value as the exported module
 	client.commands.set(command.data.name, command);
 }
-
 // Dynamically load and execute commands based on the contents of the commands folder
 // Remember to run "node deploy-commands.js" to register new commands with discord
 client.on('interactionCreate', async interaction => {
