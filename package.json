@@ -2,7 +2,7 @@
   "name": "SquidBot",
   "version": "1.0.0",
   "description": "A Discord bot that provides utilities for ARK: Survival Evolved.",
-  "main": "bot.js",
+  "main": "src/bot.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,11 +20,15 @@
     "@discordjs/builders": "^0.8.2",
     "@discordjs/rest": "^0.1.0-canary.0",
     "ascii-table3": "^0.6.3",
+    "chalk": "^4.1.2",
     "discord-api-types": "^0.24.0",
     "discord-buttons": "^4.0.0",
-    "discord.js": "^14.5.0"
+    "discord.js": "^14.5.0",
+    "mongoose": "^6.6.5"
   },
   "devDependencies": {
-    "eslint": "^8.25.0"
+    "eslint": "^8.25.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1"
   }
 }

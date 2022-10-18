@@ -4,7 +4,7 @@ const { AsciiTable3 } = require('ascii-table3');
 const { ActionRowBuilder, ButtonBuilder } = require('discord.js');
 
 // Load the stats database
-const statsJson = require('../stats.json');
+const statsJson = require('../../data/stats.json');
 
 // Mobile-friendly output
 const compact = false;

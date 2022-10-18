@@ -24,6 +24,12 @@ npm install @discordjs/builders
 # install utility to print ASCII tables
 npm install ascii-table3
 
+# install module to access a mongo database
+npm install mongoose
+
+# install module to create colored terminal text
+npm install chalk
+
 # Perms
 # Read Messages
 # Send Messages
