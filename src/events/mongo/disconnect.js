@@ -1,8 +1,8 @@
-const chalk = require("chalk");
+const chalk = require('chalk');
 
 module.exports = {
-  name: "disconnected",
+  name: 'disconnected',
   async execute() {
-    console.log(chalk.yellow("[Database]: Disconnected."));
+    console.log(chalk.yellow('[Database]: Disconnected.'));
   },
 };

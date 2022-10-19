@@ -1,8 +1,8 @@
-const chalk = require("chalk");
+const chalk = require('chalk');
 
 module.exports = {
-  name: "connecting",
+  name: 'connecting',
   execute() {
-    console.log(chalk.green("[Database]: Connecting..."));
+    console.log(chalk.green('[Database]: Connecting...'));
   },
 };
