@@ -1,17 +1,16 @@
-require("dotenv").config();
+// require('dotenv').config();
 const { clientId, guildId, token } = process.env;
-const fs = require("fs");
-const { REST } = require("@discordjs/rest");
-const { Routes } = require("discord-api-types/v9");
-const chalk = require("chalk");
+const fs = require('fs');
+const { REST } = require('@discordjs/rest');
+const { Routes } = require('discord-api-types/v9');
 
 module.exports = (client) => {
   client.handleCommands = async () => {
-    const commandFolders = fs.readdirSync("./src/commands");
+    const commandFolders = fs.readdirSync('./src/commands');
     for (const folder of commandFolders) {
       const commandFiles = fs
         .readdirSync(`./src/commands/${folder}`)
-        .filter((file) => file.endsWith(".js"));
+        .filter((file) => file.endsWith('.js'));
       for (const file of commandFiles) {
         const command = require(`../../commands/${folder}/${file}`);
         client.commands.set(command.data.name, command);
@@ -21,10 +20,10 @@ module.exports = (client) => {
     }
     // Note: To make the commands global across Discord, use applicationCommands
     // without the guildID parameter. However it might take an hour to propagate
-    const rest = new REST({ version: "9" }).setToken(token);
-    console.log("[Commands]: Registering commands with Discord.");
+    const rest = new REST({ version: '9' }).setToken(token);
+    console.log('[Commands]: Registering commands with Discord.');
     rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: client.commandArray })
-      .then(() => console.log(chalk.green("[Commands]: Successfully registered commands.")))
+      .then(() => console.log('[Commands]: Successfully registered commands.'))
       .catch(console.error);
   };
 };
