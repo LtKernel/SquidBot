@@ -1,3 +1,5 @@
+require("dotenv").config();
+const { token, database } = process.env;
 const fs = require("fs");
 const { connect } = require("mongoose");
 
@@ -33,10 +35,10 @@ client.handleCommands();
 client.handleEvents();
 
 // Finally log in to Discord with API token credentials
-client.login(config.token);
+client.login(token);
 
-// Connect to the mongo database
+// Connect to the mongo database with database connect string
 (async () => {
-  await connect(config.dbToken).catch(console.error);
+  await connect(database).catch(console.error);
 })();
 
