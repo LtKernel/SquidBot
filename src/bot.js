@@ -13,6 +13,7 @@ const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 // Init command lists
 client.commands = new Collection();
 client.commandArray = [];
+client.buttons = new Collection();
 
 // Grab all the handlers from the functions folders to handle
 // all commands and events and pass the client into each.
@@ -27,8 +28,9 @@ for (const folder of functionFolders) {
 }
 
 // Call the handler functions.
-client.handleCommands();
 client.handleEvents();
+client.handleCommands();
+client.handleComponents();
 
 // Finally log in to Discord with API token credentials.
 client.login(token);
