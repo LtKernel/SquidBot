@@ -10,10 +10,11 @@ const { Client, Collection, GatewayIntentBits } = require('discord.js');
 // Create a new client instance
 const client = new Client({ intents: [GatewayIntentBits.Guilds] });
 
-// Init command lists
+// Init collection lists
 client.commands = new Collection();
-client.commandArray = [];
 client.buttons = new Collection();
+client.selectMenus = new Collection();
+client.commandArray = [];
 
 // Grab all the handlers from the functions folders to handle
 // all commands and events and pass the client into each.

@@ -132,7 +132,7 @@ module.exports = {
         // Build the 1st button row after the table.
         const row1 = new ActionRowBuilder().addComponents(
           new SelectMenuBuilder()
-            .setCustomId('selectedId')
+            .setCustomId('creatureMenu')
             .addOptions(getMenuOptions(library)),
         );
 

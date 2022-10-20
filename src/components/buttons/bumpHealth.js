@@ -1,5 +1,3 @@
-const { EmbedBuilder } = require('discord.js');
-
 module.exports = {
   data: {
     name: 'bumpHealth',
@@ -8,14 +6,14 @@ module.exports = {
 
     // Get the current value of the menu
     // interaction.values[0];
+    const selected = client.selectMenus.values[0];
 
+    console.log(`[Health] Value of menu was: ${selected}`);
     // Update the database value
 
     // Reprint the table
-
     await interaction.update({
-      content: 'test',
-
+      content: `Bumped Health on ${selected}`,
     });
   },
 };
