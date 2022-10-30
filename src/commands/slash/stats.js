@@ -97,6 +97,7 @@ function getMenuOptions(statsTable) {
       value: `${index + 1}`,
       // set the first option as default
       default: index == 0 ? true : false,
+      // todo add the default selection to the selectedCreatures Collection
     });
   }
   return menuOptions;

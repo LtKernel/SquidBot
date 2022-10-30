@@ -16,6 +16,12 @@ client.buttons = new Collection();
 client.selectMenus = new Collection();
 client.commandArray = [];
 
+client.creatureSelections = new Collection();
+
+// Store the currently selected creature.
+// This is a temp kludge for testing
+client.selectedCreature = 0;
+
 // Grab all the handlers from the functions folders to handle
 // all commands and events and pass the client into each.
 const functionFolders = fs.readdirSync('./src/functions');
