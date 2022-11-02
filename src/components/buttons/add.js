@@ -1,5 +1,3 @@
-const Creature = require('../../schemas/creature');
-const { mongoose } = require('mongoose');
 const {
   ModalBuilder,
   ActionRowBuilder,
@@ -13,17 +11,6 @@ module.exports = {
   },
 
   async execute(interaction, client) {
-
-    // Add a new creature to the database
-    const newCreature = await new Creature({
-      _id: mongoose.Types.ObjectId(),
-      health: 15,
-    });
-
-    // todo figure out which library we are adding to
-    // todo modal to get inputs on new creature
-
-    await newCreature.save().catch(console.error);
 
     // Reprint the table
     /* await interaction.update({
@@ -66,7 +53,7 @@ module.exports = {
       .setValue('Tribe')
       .setStyle(TextInputStyle.Short);
 
-    // This input is messy.  Discord modal prompts only allow 6 inputs
+    // This input is messy.  Discord modal prompts only allow 5 inputs
     // So gather all stats in on prompt
     const statsInput = new TextInputBuilder()
       .setCustomId('statsInput')
