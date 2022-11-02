@@ -7,7 +7,7 @@ const { ActionRowBuilder, ButtonBuilder, SelectMenuBuilder } = require('discord.
 const statsJson = require('../../data/stats.json');
 
 // Mobile-friendly output
-const compact = true;
+const compact = false;
 
 function compactServer(server) {
   return compact ? {
