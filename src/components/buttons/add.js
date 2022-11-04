@@ -60,7 +60,7 @@ module.exports = {
       .setLabel('What are the stats?')
       .setRequired(true)
       .setMaxLength(32)
-      .setValue('(Sex,HP,St,Ox,Fo,We,Dm,Sp)')
+      .setValue('Sex,HP,St,Ox,Fo,We,Dm,Sp')
       .setStyle(TextInputStyle.Short);
 
     modal.addComponents(new ActionRowBuilder().addComponents(creatureInput));
